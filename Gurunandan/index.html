@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gurunandan — My World & Future Plans</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-50: #E6F1FB; --blue-200: #85B7EB; --blue-400: #378ADD; --blue-800: #0C447C;
+    --green-50: #EAF3DE; --green-200: #97C459; --green-800: #27500A;
+    --amber-50: #FAEEDA; --amber-200: #FAC775; --amber-800: #633806;
+    --teal-50: #E1F5EE; --teal-200: #5DCAA5; --teal-800: #085041;
+    --coral-50: #FAECE7; --coral-200: #F0997B; --coral-800: #712B13;
+    --purple-50: #EEEDFE; --purple-200: #AFA9EC; --purple-800: #3C3489;
+    --pink-50: #FBEAF0; --pink-800: #72243E;
+    --gray-100: #D3D1C7;
+  }
+  body { font-family: 'Nunito', sans-serif; background: #FAFAF8; color: #2C2C2A; min-height: 100vh; }
+
+  .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .hero-photo { position: relative; overflow: hidden; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, #FAFAF8 100%); }
+  .hero-content { display: flex; flex-direction: column; justify-content: center; padding: 4rem 3rem 4rem 2rem; position: relative; z-index: 1; }
+  .hero-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-400); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.6s ease forwards; }
+  .hero-name { font-family: 'Baloo 2', cursive; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.0; color: #1a1a18; opacity: 0; animation: fadeUp 0.6s ease 0.15s forwards; }
+  .hero-name span { color: var(--blue-400); }
+  .hero-sub { font-size: 1.1rem; color: #5F5E5A; margin-top: 1rem; line-height: 1.6; opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.5rem; opacity: 0; animation: fadeUp 0.6s ease 0.45s forwards; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+  .badge.b-blue { background: var(--blue-50); color: var(--blue-800); }
+  .badge.b-green { background: var(--green-50); color: var(--green-800); }
+  .badge.b-amber { background: var(--amber-50); color: var(--amber-800); }
+  .badge.b-teal { background: var(--teal-50); color: var(--teal-800); }
+  .badge.b-coral { background: var(--coral-50); color: var(--coral-800); }
+  .badge.b-purple { background: var(--purple-50); color: var(--purple-800); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+  .main { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-400); margin-bottom: 0.75rem; }
+  .section-heading { font-family: 'Baloo 2', cursive; font-size: 2rem; font-weight: 800; color: #1a1a18; margin-bottom: 2rem; }
+
+  .traits-section { margin-bottom: 5rem; }
+  .traits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .trait-card { background: white; border: 1px solid var(--gray-100); border-radius: 20px; padding: 1.5rem 1.25rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; overflow: hidden; }
+  .trait-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 20px 20px 0 0; }
+  .trait-card.t-blue::before { background: var(--blue-400); }
+  .trait-card.t-green::before { background: var(--green-200); }
+  .trait-card.t-amber::before { background: var(--amber-200); }
+  .trait-card.t-teal::before { background: var(--teal-200); }
+  .trait-card.t-coral::before { background: var(--coral-200); }
+  .trait-card.t-purple::before { background: var(--purple-200); }
+  .trait-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .trait-icon { font-size: 2.2rem; margin-bottom: 0.75rem; display: block; }
+  .trait-name { font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; color: #1a1a18; margin-bottom: 4px; }
+  .trait-desc { font-size: 0.82rem; color: #888780; line-height: 1.5; }
+
+  .teacher-quote { background: linear-gradient(135deg, var(--amber-50), var(--coral-50)); border-radius: 24px; padding: 2.5rem; margin-bottom: 5rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+  .quote-icon { font-size: 3rem; flex-shrink: 0; line-height: 1; }
+  .quote-text { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 600; color: var(--amber-800); line-height: 1.5; font-style: italic; }
+  .quote-attr { font-size: 0.9rem; font-weight: 700; color: var(--coral-800); margin-top: 0.75rem; }
+
+  .activities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 5rem; }
+  .activity-card { background: white; border: 1px solid var(--gray-100); border-radius: 20px; padding: 1.5rem 1.25rem; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .activity-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .activity-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+  .activity-name { font-size: 0.95rem; font-weight: 700; color: #2C2C2A; }
+  .activity-desc { font-size: 0.8rem; color: #888780; margin-top: 4px; }
+
+  .timeline-section { margin-bottom: 5rem; }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 19px; top: 20px; bottom: 20px; width: 2px; background: linear-gradient(to bottom, var(--blue-200), var(--purple-200)); border-radius: 2px; }
+  .tl-item { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 2rem; position: relative; }
+  .tl-dot { width: 40px; height: 40px; min-width: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-left: -2rem; position: relative; z-index: 1; border: 2px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .tl-dot.now { background: var(--blue-50); }
+  .tl-dot.soon { background: var(--green-50); }
+  .tl-dot.mid { background: var(--amber-50); }
+  .tl-dot.dream { background: var(--purple-50); }
+  .tl-body { background: white; border: 1px solid var(--gray-100); border-radius: 16px; padding: 1.25rem 1.5rem; flex: 1; }
+  .tl-age { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888780; margin-bottom: 4px; }
+  .tl-title { font-family: 'Baloo 2', cursive; font-size: 1.1rem; font-weight: 700; color: #1a1a18; margin-bottom: 4px; }
+  .tl-desc { font-size: 0.9rem; color: #5F5E5A; line-height: 1.6; }
+
+  .facts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 5rem; }
+  .fact-card { background: white; border: 1px solid var(--gray-100); border-radius: 16px; padding: 1.25rem; }
+  .fact-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888780; margin-bottom: 6px; }
+  .fact-value { font-family: 'Baloo 2', cursive; font-size: 1.1rem; font-weight: 700; color: #1a1a18; }
+
+  .footer { background: linear-gradient(135deg, var(--blue-50), var(--purple-50)); border-radius: 24px; padding: 3rem; text-align: center; }
+  .footer-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .footer-msg { font-family: 'Baloo 2', cursive; font-size: 1.6rem; font-weight: 800; color: var(--blue-800); line-height: 1.3; margin-bottom: 0.75rem; }
+  .footer-sub { font-size: 1rem; color: var(--purple-800); font-weight: 600; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-photo { height: 70vw; }
+    .hero-photo::after { background: linear-gradient(to bottom, transparent 60%, #FAFAF8 100%); }
+    .hero-content { padding: 2rem 1.5rem 3rem; }
+    .activities-grid, .traits-grid { grid-template-columns: repeat(2, 1fr); }
+    .facts-grid { grid-template-columns: repeat(2, 1fr); }
+    .teacher-quote { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-photo">
+    <img src="https://raw.githubusercontent.com/siddeshkumarb/siddeshwebsite/main/GurunandanProfile/GuruPic.jpg" alt="Gurunandan at Google headquarters"/>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">My world &amp; future plans</div>
+    <div class="hero-name">Guru<span>nandan</span></div>
+    <div class="hero-sub">Age 6 · 1st Grade at Stratford School<br/>Dreamer, builder, soccer star &amp; all-round amazing kid!</div>
+    <div class="hero-badges">
+      <span class="badge b-blue">⚽ Soccer Star</span>
+      <span class="badge b-green">🎨 Talented in Art</span>
+      <span class="badge b-amber">💛 Honest &amp; Kind</span>
+      <span class="badge b-teal">🧱 Lego Builder</span>
+      <span class="badge b-coral">🍕 Pizza &amp; Dosa Fan</span>
+      <span class="badge b-purple">⚡ Quick Learner</span>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+
+  <div class="traits-section">
+    <div class="section-label">Who I am</div>
+    <div class="section-heading">What makes Guru special</div>
+    <div class="traits-grid">
+      <div class="trait-card t-amber"><span class="trait-icon">💛</span><div class="trait-name">Honest</div><div class="trait-desc">Always tells the truth — even when it's hard. Guru believes honesty is the best policy.</div></div>
+      <div class="trait-card t-teal"><span class="trait-icon">🤗</span><div class="trait-name">Kind</div><div class="trait-desc">Warm-hearted and caring to everyone around him — friends, family, and teachers alike.</div></div>
+      <div class="trait-card t-blue"><span class="trait-icon">🌟</span><div class="trait-name">Responsible</div><div class="trait-desc">Trustworthy and dependable — always steps up and takes care of his duties.</div></div>
+      <div class="trait-card t-green"><span class="trait-icon">⚡</span><div class="trait-name">Quick Learner</div><div class="trait-desc">Picks up new things fast and loves the thrill of understanding something new every day.</div></div>
+      <div class="trait-card t-coral"><span class="trait-icon">🎨</span><div class="trait-name">Very Good in Art</div><div class="trait-desc">A natural creative — his drawings and artwork always impress and surprise everyone.</div></div>
+      <div class="trait-card t-purple"><span class="trait-icon">🏆</span><div class="trait-name">Class Superstar</div><div class="trait-desc">The go-to kid in the classroom — always ready to help, lead, and make everyone smile.</div></div>
+    </div>
+  </div>
+
+  <div class="teacher-quote">
+    <div class="quote-icon">👩‍🏫</div>
+    <div>
+      <div class="quote-text">"Gurunandan is always my go-to kid in the classroom. He is responsible, kind, and such a delight to teach. His artwork genuinely amazes me every time!"</div>
+      <div class="quote-attr">— Guru's Teacher, Stratford School · 1st Grade</div>
+    </div>
+  </div>
+
+  <div class="section-label">What I love</div>
+  <div class="section-heading">Things that make me happy</div>
+  <div class="activities-grid">
+    <div class="activity-card"><span class="activity-icon">⚽</span><div class="activity-name">Soccer</div><div class="activity-desc">My favorite sport ever!</div></div>
+    <div class="activity-card"><span class="activity-icon">🧱</span><div class="activity-name">Lego</div><div class="activity-desc">Building amazing things</div></div>
+    <div class="activity-card"><span class="activity-icon">🎨</span><div class="activity-name">Art</div><div class="activity-desc">Creating my own masterpieces</div></div>
+    <div class="activity-card"><span class="activity-icon">📖</span><div class="activity-name">Reading</div><div class="activity-desc">Adventures in every page</div></div>
+    <div class="activity-card"><span class="activity-icon">👨</span><div class="activity-name">Time with Dad</div><div class="activity-desc">My favorite teammate</div></div>
+    <div class="activity-card"><span class="activity-icon">👫</span><div class="activity-name">Friends</div><div class="activity-desc">Playing in the apartment</div></div>
+  </div>
+
+  <div class="timeline-section">
+    <div class="section-label">My journey</div>
+    <div class="section-heading">From today to my big dreams</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-dot now">⭐</div><div class="tl-body"><div class="tl-age">Right now · Age 6</div><div class="tl-title">1st Grade at Stratford School</div><div class="tl-desc">Learning to read, write, count, and making the best friends — and the teacher's go-to superstar!</div></div></div>
+      <div class="tl-item"><div class="tl-dot soon">⚽</div><div class="tl-body"><div class="tl-age">Coming soon · Age 7–10</div><div class="tl-title">Join a real soccer team</div><div class="tl-desc">Score goals, wear a jersey with my name, and play in weekend matches with my teammates.</div></div></div>
+      <div class="tl-item"><div class="tl-dot soon">🎨</div><div class="tl-body"><div class="tl-age">Growing up · Age 8–12</div><div class="tl-title">Become an amazing artist</div><div class="tl-desc">Enter art competitions, fill sketchbooks, and create works that inspire people around him.</div></div></div>
+      <div class="tl-item"><div class="tl-dot mid">📚</div><div class="tl-body"><div class="tl-age">Middle school · Age 11–14</div><div class="tl-title">Leader &amp; top student</div><div class="tl-desc">Class representative, honor roll, and still the kindest, most honest kid in the room.</div></div></div>
+      <div class="tl-item"><div class="tl-dot mid">🏫</div><div class="tl-body"><div class="tl-age">Teen years · Age 14–18</div><div class="tl-title">High school champion</div><div class="tl-desc">Captain of the soccer team, top of the class, artist, and always finding new adventures.</div></div></div>
+      <div class="tl-item"><div class="tl-dot dream">🚀</div><div class="tl-body"><div class="tl-age">The future · Age 18+</div><div class="tl-title">Dream big &amp; conquer the world</div><div class="tl-desc">Scientist, engineer, artist, soccer pro — anything he puts his quick-learning, honest, kind mind to!</div></div></div>
+    </div>
+  </div>
+
+  <div class="section-label">Quick facts</div>
+  <div class="section-heading">All about Guru</div>
+  <div class="facts-grid">
+    <div class="fact-card"><div class="fact-label">Favorite food</div><div class="fact-value">🍕 Pizza &amp; Dosa</div></div>
+    <div class="fact-card"><div class="fact-label">Best sport</div><div class="fact-value">⚽ Soccer</div></div>
+    <div class="fact-card"><div class="fact-label">Creative gift</div><div class="fact-value">🎨 Art</div></div>
+    <div class="fact-card"><div class="fact-label">School</div><div class="fact-value">🏫 Stratford School</div></div>
+    <div class="fact-card"><div class="fact-label">Best quality</div><div class="fact-value">💛 Honesty &amp; Kindness</div></div>
+    <div class="fact-card"><div class="fact-label">Superpower</div><div class="fact-value">⚡ Quick learner</div></div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-emoji">🌟</span>
+    <div class="footer-msg">The world is big and full of wonder —<br/>and Gurunandan is just getting started!</div>
+    <div class="footer-sub">Made with love, just for Guru ✨</div>
+  </div>
+
+</main>
+</body>
+</html>
