@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grammar - 50 Questions</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #d9f0ff;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #45a049; }
+    #result { font-size: 22px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Grammar Questions</h1>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <p id="progress"></p>
+  <h2 id="result"></h2>
+  <button id="restartBtn" onclick="restartQuiz()" style="display:none;">Play Again</button>
+</div>
+
+<script>
+const allQuestions = [
+  // Prepositions
+  {q:"The cat is ___ the table.", options:["in","on","at"], answer:1},
+  {q:"She is sitting ___ me.", options:["next to","under","into"], answer:0},
+  {q:"We walked ___ the park.", options:["through","by","for"], answer:0},
+  {q:"The book is ___ the bag.", options:["inside","over","for"], answer:0},
+  {q:"He jumped ___ the wall.", options:["over","under","with"], answer:0},
+
+  // Adjectives
+  {q:"This is a ___ apple.", options:["red","quickly","run"], answer:0},
+  {q:"She has a ___ dress.", options:["beautiful","slowly","eat"], answer:0},
+  {q:"The dog is very ___.", options:["happy","runs","fastly"], answer:0},
+  {q:"It is a ___ day.", options:["sunny","run","quick"], answer:0},
+  {q:"He is a ___ boy.", options:["kind","run","slowly"], answer:0},
+
+  // Adverbs
+  {q:"She sings ___.", options:["beautifully","beautiful","beauty"], answer:0},
+  {q:"He runs ___.", options:["fast","fasterly","speed"], answer:0},
+  {q:"They worked ___.", options:["hard","hardly","harderly"], answer:0},
+  {q:"The turtle moves ___.", options:["slowly","slow","slowness"], answer:0},
+  {q:"She spoke ___.", options:["loudly","loud","loudness"], answer:0},
+
+  // Tenses
+  {q:"I ___ to school every day.", options:["go","went","going"], answer:0},
+  {q:"She ___ yesterday.", options:["ran","run","running"], answer:0},
+  {q:"They ___ playing now.", options:["are","were","is"], answer:0},
+  {q:"He ___ eaten lunch.", options:["has","have","had"], answer:0},
+  {q:"We ___ a movie tonight.", options:["will watch","watched","watching"], answer:0},
+
+  // Nouns
+  {q:"Which is a noun?", options:["jump","dog","quickly"], answer:1},
+  {q:"Which is a place?", options:["school","run","fast"], answer:0},
+  {q:"Which is a thing?", options:["table","run","happy"], answer:0},
+  {q:"Which is a person?", options:["teacher","quick","run"], answer:0},
+  {q:"Which is an animal?", options:["lion","run","blue"], answer:0},
+
+  // Verbs
+  {q:"Which is a verb?", options:["run","blue","chair"], answer:0},
+  {q:"Which shows action?", options:["jump","happy","desk"], answer:0},
+  {q:"She can ___.", options:["sing","blue","cat"], answer:0},
+  {q:"They ___ soccer.", options:["play","blue","fast"], answer:0},
+  {q:"He ___ every day.", options:["reads","book","happy"], answer:0},
+
+  // Mixed Grammar
+  {q:"She ___ happy.", options:["is","are","am"], answer:0},
+  {q:"I ___ a student.", options:["am","is","are"], answer:0},
+  {q:"They ___ playing.", options:["are","is","am"], answer:0},
+  {q:"___ is your name?", options:["What","Where","When"], answer:0},
+  {q:"He ___ going home.", options:["is","are","am"], answer:0},
+
+  // Extra 20 questions
+  {q:"The boy runs ___.", options:["fast","fastly","speed"], answer:0},
+  {q:"This cake tastes ___.", options:["sweet","sweetly","sweetness"], answer:0},
+  {q:"She ___ a letter.", options:["writes","write","writing"], answer:0},
+  {q:"We ___ dinner now.", options:["are eating","eat","ate"], answer:0},
+  {q:"The book is ___ the shelf.", options:["on","in","at"], answer:0},
+
+  {q:"He is ___ than me.", options:["taller","tall","tallest"], answer:0},
+  {q:"She danced ___.", options:["gracefully","graceful","grace"], answer:0},
+  {q:"I ___ my homework.", options:["did","do","doing"], answer:0},
+  {q:"The ball rolled ___.", options:["away","quick","run"], answer:0},
+  {q:"The sky is ___.", options:["blue","run","quickly"], answer:0},
+
+  {q:"Birds ___ flying.", options:["are","is","am"], answer:0},
+  {q:"He ___ to school yesterday.", options:["went","go","gone"], answer:0},
+  {q:"The baby sleeps ___.", options:["quietly","quiet","quietness"], answer:0},
+  {q:"This is the ___ car.", options:["fastest","fast","faster"], answer:0},
+  {q:"They ___ happy.", options:["are","is","am"], answer:0},
+
+  {q:"She ___ cooking.", options:["is","are","am"], answer:0},
+  {q:"The cat sat ___ the mat.", options:["on","in","under"], answer:0},
+  {q:"He speaks ___.", options:["clearly","clear","clearness"], answer:0},
+  {q:"We ___ going to the park.", options:["are","is","am"], answer:0},
+  {q:"The dog barked ___.", options:["loudly","loud","loudness"], answer:0}
+];
+
+// Shuffle and take 50
+function getRandomQuestions(arr, num) {
+  return arr.sort(() => 0.5 - Math.random()).slice(0, num);
+}
+
+let questions = getRandomQuestions(allQuestions, 50);
+let index = 0;
+let score = 0;
+
+function showQuestion() {
+  document.getElementById("result").innerText = "";
+  let q = questions[index];
+  document.getElementById("question").innerText = q.q;
+
+  let optionsDiv = document.getElementById("options");
+  optionsDiv.innerHTML = "";
+
+  q.options.forEach((opt, i) => {
+    let btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(i);
+    optionsDiv.appendChild(btn);
+  });
+
+  document.getElementById("progress").innerText =
+    "Question " + (index+1) + " of 50";
+}
+
+function checkAnswer(i) {
+  if (i === questions[index].answer) score++;
+  index++;
+  if (index < questions.length) showQuestion();
+  else showResult();
+}
+
+function showResult() {
+  document.getElementById("question").innerText = "";
+  document.getElementById("options").innerHTML = "";
+  document.getElementById("progress").innerText = "";
+
+  document.getElementById("result").innerText =
+    "Your Score: " + score + " / 50";
+
+  document.getElementById("restartBtn").style.display = "block";
+}
+
+function restartQuiz() {
+  questions = getRandomQuestions(allQuestions, 50);
+  index = 0;
+  score = 0;
+  document.getElementById("restartBtn").style.display = "none";
+  showQuestion();
+}
+
+showQuestion();
+</script>
+
+</body>
+</html>
+``
